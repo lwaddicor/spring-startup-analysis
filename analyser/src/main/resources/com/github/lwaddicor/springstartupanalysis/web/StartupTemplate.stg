@@ -1,0 +1,22 @@
+t1(totaltime, items) ::= <<
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Startup Statistics</title>
+</head>
+
+<body>
+    <center>
+    <p><h1>TreeMap of Start Time - Total $totaltime$ms
+    <img src="img.jpeg" width="1200" height="800" alt="map" usemap="#startmap">
+    <map name="startmap">
+        $items:{item | <area shape="rect" coords="$item.left$,$item.top$,$item.right$,$item.bottom$" title="$item.time$ms - $item.name$"/>}$
+    </map>
+    </center>
+</body>
+</html>
+
+>>
