@@ -33,8 +33,6 @@ public class StartProgressBeanPostProcessor implements BeanPostProcessor, Applic
         totalTimeStopWatch.reset();
         totalTimeStopWatch.start();
         beanTimeStopWatch.start();
-
-        System.out.println("#####################################################################################");
     }
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

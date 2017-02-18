@@ -35,7 +35,7 @@ import pd.treemap.TreemapLayout;
 @Controller
 @ResponseBody
 @RequestMapping(value = "/spring-startup")
-public class SpringStartupRest implements ApplicationListener<ContextRefreshedEvent> {
+public class SpringStartupController implements ApplicationListener<ContextRefreshedEvent> {
 
     private static final int imageWidth = 1200;
     private static final int imageHeight = 800;
@@ -48,7 +48,7 @@ public class SpringStartupRest implements ApplicationListener<ContextRefreshedEv
     private StartProgressBeanPostProcessor processor;
 
     @Autowired
-    public SpringStartupRest(StartProgressBeanPostProcessor processor){
+    public SpringStartupController(StartProgressBeanPostProcessor processor){
         this.processor = processor;
     }
 
