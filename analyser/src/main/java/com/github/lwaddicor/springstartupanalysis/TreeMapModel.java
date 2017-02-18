@@ -37,7 +37,7 @@ public class TreeMapModel implements MapModel {
 
     /**
      * Gets the items converted to the SquareItem Type
-     * @return
+     * @return The square items
      */
     public List<StartTimeSquareDto> getSquareItems() {
 
