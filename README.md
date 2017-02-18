@@ -30,3 +30,7 @@ Now you should be able to start up your servlet and navigate to the endpoint. Fo
 http://localhost:8080/spring-startup/
 
 And view something very similar to the example.
+
+### Credits
+
+TreeMap algorithm from[peterdmv/treemap](https://github.com/peterdmv/treemap) was used to calculate the treemap.
