@@ -10,7 +10,7 @@ t1(totaltime, items) ::= <<
 
 <body>
     <center>
-    <p><h1>TreeMap of Start Time - Total $totaltime$ms
+    <p><h1>TreeMap of Start Time - Total $totaltime$ms</h1></p>
     <img src="img.jpeg" width="1200" height="800" alt="map" usemap="#startmap">
     <map name="startmap">
         $items:{item | <area shape="rect" coords="$item.left$,$item.top$,$item.right$,$item.bottom$" title="$item.time$ms - $item.name$"/>}$
