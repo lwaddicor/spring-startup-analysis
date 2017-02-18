@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
@@ -70,4 +70,11 @@
         </plugins>
     </build>
 
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>https://github.com/lwaddicor/spring-startup-analysis/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 </project>

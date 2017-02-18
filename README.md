@@ -8,7 +8,7 @@ construction times of each spring bean.
 
 ## How to use
 
-Import the module as a maven dependency. (Not currently uploaded to mvn central
+Import the module as a maven dependency. (Not currently uploaded to mvn central)
 
     <dependency>
         <groupId>com.github.lwaddicor</groupId>
@@ -33,4 +33,4 @@ And view something very similar to the example.
 
 ### Credits
 
-TreeMap algorithm from[peterdmv/treemap](https://github.com/peterdmv/treemap) was used to calculate the treemap.
+TreeMap algorithm from [peterdmv/treemap](https://github.com/peterdmv/treemap) was used to calculate the treemap.
