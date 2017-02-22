@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.lwaddicor</groupId>
+    <artifactId>spring-startup-analysis-pom</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <url>http://github.com/lwaddicor/spring-startup-analysis</url>
+    <name>Spring Startup Analysis</name>
+    <description>Spring startup analyser</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>https://github.com/lwaddicor/spring-startup-analysis/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>lwaddicor</id>
+            <name>Lewis Waddicor</name>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>analyser</module>
+        <module>demo</module>
+    </modules>
+</project>
