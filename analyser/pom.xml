@@ -64,7 +64,7 @@
 
     <licenses>
         <license>
-            <name>BSD</name>
+            <name>MIT</name>
             <url>https://github.com/lwaddicor/spring-startup-analysis/blob/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
