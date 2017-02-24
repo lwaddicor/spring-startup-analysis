@@ -55,7 +55,8 @@ public class StartProgressBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 
         StopWatch stopWatch = beanStopWatchMap.get(beanName);
-        if (stopWatch != null) {
+        if (stopWatch != null && stopWatch.isStarted()) {
+
             stopWatch.stop();
 
             if (!inFactoryBean) {
