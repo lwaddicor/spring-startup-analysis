@@ -3,10 +3,12 @@ package com.github.lwaddicor.springstartupanalysis.web;
 import com.github.lwaddicor.springstartupanalysis.TreeMapModel;
 import com.github.lwaddicor.springstartupanalysis.StartProgressBeanPostProcessor;
 import com.github.lwaddicor.springstartupanalysis.dto.StartTimeSquareDto;
+import com.github.lwaddicor.springstartupanalysis.dto.StartTimeStatisticDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,30 +37,21 @@ import pd.treemap.TreemapLayout;
 @Controller
 @ResponseBody
 @RequestMapping(value = "/spring-startup")
-public class SpringStartupController implements ApplicationListener<ContextRefreshedEvent> {
+public class SpringStartupController {
 
     private static final int imageWidth = 1200;
     private static final int imageHeight = 800;
 
-    private BufferedImage image = new BufferedImage(imageWidth, imageHeight,
-            BufferedImage.TYPE_BYTE_INDEXED);
-
+    private BufferedImage image;
     private String html;
 
+    @Autowired
     private StartProgressBeanPostProcessor processor;
 
-    @Autowired
-    public SpringStartupController(StartProgressBeanPostProcessor processor){
-        this.processor = processor;
-    }
+    private void doConstruct(){
 
-    /**
-     * Gets called when the application becomes ready
-     *
-     * @param applicationReadyEvent The application event
-     */
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent applicationReadyEvent) {
+        image = new BufferedImage(imageWidth, imageHeight,
+                BufferedImage.TYPE_BYTE_INDEXED);
 
         Rect bounds = new Rect(0, 0, imageWidth, imageHeight);
         TreemapLayout algorithm = new TreemapLayout();
@@ -96,6 +89,7 @@ public class SpringStartupController implements ApplicationListener<ContextRefre
      */
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public String getHtml() {
+        doConstruct();
         return html;
     }
 
@@ -126,5 +120,4 @@ public class SpringStartupController implements ApplicationListener<ContextRefre
         responseOutputStream.flush();
         responseOutputStream.close();
     }
-
 }

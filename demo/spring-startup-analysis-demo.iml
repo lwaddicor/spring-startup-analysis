@@ -40,11 +40,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.github.lwaddicor:spring-startup-analysis:0.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="spring-startup-analysis" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: com.google.gwt:gwt-dev:2.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.json:json:20140107" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:stringtemplate:4.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.3" level="project" />
   </component>

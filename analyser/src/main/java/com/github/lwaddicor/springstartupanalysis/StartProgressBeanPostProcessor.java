@@ -5,62 +5,83 @@ import com.github.lwaddicor.springstartupanalysis.dto.StartTimeStatisticDto;
 import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
+import java.util.Map;
 
 /**
  * This class monitors the start progress of the spring instance
  */
 @Component
-public class StartProgressBeanPostProcessor implements BeanPostProcessor, ApplicationListener<ContextRefreshedEvent> {
+public class StartProgressBeanPostProcessor implements BeanPostProcessor {
 
     private List<StartTimeStatisticDto> times = new LinkedList<>();
-    private StopWatch beanTimeStopWatch = new StopWatch();
-    private StopWatch totalTimeStopWatch = new StopWatch();
+    private Map<String, StopWatch> beanStopWatchMap = new HashMap<>();
+
+    // Hopefully the logic to this makes sense. Some beans such as
+    // tomcatEmbeddedServletContainerFactory seem to create beans inside them.
+    // By having this, I can ignore any of these parent beans.
+    private boolean inFactoryBean;
 
     /**
-     * Constructor for the bean post processor
+     * Called before a bean is constructed. Saves bean creation details.
+     *
+     * @param bean The bean being created.
+     * @param beanName The name of the bean being created.
+     * @return The bean being created.
+     * @throws BeansException
      */
-    @PostConstruct
-    public void postConstruct(){
-        totalTimeStopWatch.reset();
-        totalTimeStopWatch.reset();
-        totalTimeStopWatch.start();
-        beanTimeStopWatch.start();
-    }
-
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        beanStopWatchMap.put(beanName, stopWatch);
+        inFactoryBean = false;
         return bean;
     }
 
+    /**
+     * Called after a bean is constructed. Saves bean creation details.
+     *
+     * @param bean The bean being created.
+     * @param beanName The name of the bean being created.
+     * @return The bean being created.
+     * @throws BeansException
+     */
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        beanTimeStopWatch.stop();
 
-        long deltaT = beanTimeStopWatch.getTime();
+        StopWatch stopWatch = beanStopWatchMap.get(beanName);
+        if (stopWatch != null) {
+            stopWatch.stop();
 
-        StartTimeStatisticDto bss = new StartTimeStatisticDto(bean.getClass().toString(), deltaT);
-        times.add(bss);
+            if (!inFactoryBean) {
+                long deltaT = stopWatch.getTime();
+                StartTimeStatisticDto bss = new StartTimeStatisticDto(bean.getClass().toString(), deltaT);
+                times.add(bss);
+            }
+        }
 
-        beanTimeStopWatch.reset();
-        beanTimeStopWatch.start();
+        inFactoryBean = true;
         return bean;
     }
 
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        totalTimeStopWatch.stop();
-    }
-
-    public List<StartTimeStatisticDto> getTimesAsArray(){
+    /**
+     * Gets the bean startup times as a list
+     *
+     * @return a list of startup times
+     */
+    public List<StartTimeStatisticDto> getTimesAsArray() {
         return times;
     }
 
+    /**
+     * Gets the total time to start all the beans
+     */
     public long getTotalTime(){
-        return totalTimeStopWatch.getTime();
+        return times.stream().mapToLong(t -> t.getTime()).sum();
     }
 }
