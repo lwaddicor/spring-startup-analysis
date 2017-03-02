@@ -13,7 +13,7 @@ Import the module as a maven dependency.
     <dependency>
         <groupId>com.github.lwaddicor</groupId>
         <artifactId>spring-startup-analysis</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 
 Either add to your component scanning the following base package
